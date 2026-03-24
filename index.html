@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Online Casino and Live Casino</title>
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: Arial, sans-serif;
+min-height: 100vh;
+background-image: url('images/bg.jpg');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+background-attachment: fixed;
+overflow-x: hidden;
+position: relative;
+}
+
+/* Desktop background */
+@media screen and (min-width: 768px) {
+body {
+background-image: url('images/bg.jpg');
+}
+}
+
+.main {
+min-height: 100vh;
+position: relative;
+z-index: 2;
+}
+
+/* Header */
+.header {
+position: relative;
+z-index: 10;
+padding: 20px;
+text-align: center;
+}
+
+.header__logo {
+display: inline-block;
+text-decoration: none;
+}
+
+.header__logo-img {
+max-width: 200px;
+width: 100%;
+height: auto;
+display: block;
+}
+
+.header__logo-text {
+font-size: 32px;
+font-weight: bold;
+color: #ffd700;
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+letter-spacing: 2px;
+display: none;
+}
+
+/* Decorative Items */
+.decor-items {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+pointer-events: none;
+z-index: 1;
+overflow: hidden;
+}
+
+.decor-items__container {
+position: relative;
+width: 100%;
+height: 100%;
+}
+
+.decor-items__item {
+position: absolute;
+pointer-events: none;
+}
+
+.decor-items__item img {
+max-width: 100%;
+height: auto;
+}
+
+/* Position decorative characters */
+.decor-items__item--god {
+left: 0%;
+bottom: 5%;
+width: 600px;
+max-width: 50%;
+z-index: 2;
+}
+
+.decor-items__item--girl {
+right: 0%;
+bottom: 5%;
+width: 500px;
+max-width: 45%;
+z-index: 2;
+}
+
+.decor-items__item--1,
+.decor-items__item--2,
+.decor-items__item--3 {
+width: 100px;
+opacity: 0.8;
+}
+
+.decor-items__item--1 {
+top: 20%;
+left: 10%;
+}
+
+.decor-items__item--2 {
+top: 30%;
+right: 15%;
+}
+
+.decor-items__item--3 {
+bottom: 30%;
+left: 15%;
+}
+
+/* Falling Coins Animation */
+.falling-items {
+position: absolute;
+width: 100%;
+height: 100%;
+overflow: hidden;
+}
+
+.falling-items__item {
+position: absolute;
+animation: fall linear infinite;
+opacity: 0.8;
+}
+
+.falling-items__item img {
+width: 40px;
+height: auto;
+}
+
+.falling-items__item--1 { left: 10%; animation-duration: 3s; animation-delay: 0s; }
+.falling-items__item--2 { left: 20%; animation-duration: 4s; animation-delay: 0.5s; }
+.falling-items__item--3 { left: 30%; animation-duration: 3.5s; animation-delay: 1s; }
+.falling-items__item--4 { left: 40%; animation-duration: 4.5s; animation-delay: 1.5s; }
+.falling-items__item--5 { left: 50%; animation-duration: 3s; animation-delay: 2s; }
+.falling-items__item--6 { left: 60%; animation-duration: 4s; animation-delay: 0.3s; }
+.falling-items__item--7 { left: 70%; animation-duration: 3.5s; animation-delay: 0.8s; }
+.falling-items__item--8 { left: 80%; animation-duration: 4.5s; animation-delay: 1.2s; }
+.falling-items__item--9 { left: 90%; animation-duration: 3s; animation-delay: 1.8s; }
+
+@keyframes fall {
+0% {
+transform: translateY(-100px) rotate(0deg);
+opacity: 0;
+}
+10% {
+opacity: 0.8;
+}
+90% {
+opacity: 0.8;
+}
+100% {
+transform: translateY(100vh) rotate(360deg);
+opacity: 0;
+}
+}
+
+/* Ribbons */
+.ribbons {
+position: relative;
+z-index: 5;
+text-align: center;
+margin: 10px 0 0 0;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 8px;
+}
+
+.ribbons span {
+padding: 10px 30px;
+border-radius: 0;
+font-weight: bold;
+font-size: 16px;
+text-transform: uppercase;
+letter-spacing: 2px;
+box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+position: relative;
+display: inline-block;
+min-width: 200px;
+text-align: center;
+}
+
+.ribbons span:first-child {
+background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+color: #fff;
+text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.ribbons span:last-child {
+background: linear-gradient(135deg, #00ffff 0%, #00cccc 100%);
+color: #000;
+text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+/* Wheel Section */
+.wheel {
+position: relative;
+z-index: 5;
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 20px;
+margin-bottom: 100px;
+}
+
+.wheel__attempts {
+position: relative;
+z-index: 5;
+margin-top: 0;
+margin-bottom: 15px;
+font-size: 14px;
+color: #fff;
+text-align: center;
+font-weight: bold;
+text-transform: uppercase;
+letter-spacing: 1px;
+}
+
+.wheel__attempts-title {
+color: #fff;
+}
+
+.wheel__attempts-value {
+color: #ffd700;
+font-size: 18px;
+font-weight: bold;
+}
+
+.wheel__layout {
+position: relative;
+width: 550px;
+height: 550px;
+max-width: 90vw;
+max-height: 90vw;
+}
+
+.wheel__spinner {
+position: relative;
+width: 100%;
+height: 100%;
+}
+
+.wheel__spinner-around {
+position: absolute;
+width: 100%;
+height: 100%;
+background-image: url('images/wheel-around.png');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+z-index: 1;
+}
+
+.wheel__spinner-img {
+position: absolute;
+width: 100%;
+height: 100%;
+background-image: url('images/wheel.png');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+border-radius: 50%;
+z-index: 2;
+animation: wheelIdle 3s ease-in-out infinite;
+filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
+}
+
+@keyframes wheelIdle {
+0%, 100% {
+transform: rotate(-5deg);
+}
+50% {
+transform: rotate(5deg);
+}
+}
+
+.wheel__spinner--animate .wheel__spinner-img {
+animation: none;
+transition: transform 6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.wheel__spinner--animate.wheel__spinner--win .wheel__spinner-img {
+transition: transform 7s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+}
+
+.wheel__spinner-arrow {
+position: absolute;
+top: -5px;
+left: 50%;
+transform: translateX(-50%);
+width: 100px;
+height: 100px;
+background-image: url('images/arrow.png');
+background-size: contain;
+background-position: center;
+background-repeat: no-repeat;
+z-index: 10;
+filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+pointer-events: none;
+}
+
+.wheel__spinner-center {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 160px;
+height: 160px;
+border-radius: 50%;
+background: #ff0000;
+border: none;
+z-index: 5;
+display: flex;
+align-items: center;
+justify-content: center;
+box-shadow: 0 4px 20px rgba(255, 0, 0, 0.5);
+cursor: pointer;
+transition: all 0.3s ease;
+background-image: url('images/btn-spin.png');
+background-size: contain;
+background-position: center;
+background-repeat: no-repeat;
+}
+
+.wheel__spinner-center:hover {
+transform: translate(-50%, -50%) scale(1.05);
+box-shadow: 0 6px 25px rgba(255, 0, 0, 0.7);
+}
+
+.wheel__spinner-center:disabled {
+cursor: not-allowed;
+opacity: 0.7;
+}
+
+.wheel__spinner-bling {
+position: absolute;
+width: 100%;
+height: 100%;
+/* wheel-bling.png not provided */
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+z-index: 3;
+pointer-events: none;
+animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+0%, 100% { opacity: 1; transform: scale(1); }
+50% { opacity: 0.8; transform: scale(1.02); }
+}
+
+/* Achievements */
+.wheel__achievements {
+position: relative;
+z-index: 5;
+text-align: center;
+margin: 20px 0;
+}
+
+.wheel__achievements-fs {
+display: none;
+}
+
+.wheel__achievements-fs.show {
+display: block;
+}
+
+.lights-content {
+display: inline-flex;
+flex-direction: column;
+align-items: center;
+gap: 10px;
+}
+
+.lights-content__gift {
+width: 80px;
+height: auto;
+}
+
+.lights-content__value {
+font-size: 32px;
+font-weight: bold;
+color: #ffd700;
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.lights-content__value--subtitle {
+font-size: 18px;
+display: block;
+color: #fff;
+}
+
+/* Modal */
+.main__modal {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.8);
+z-index: 1000;
+align-items: center;
+justify-content: center;
+}
+
+.main__modal.active {
+display: flex;
+}
+
+/* Failure Modal */
+.main__modal-failure {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.8);
+z-index: 1000;
+align-items: center;
+justify-content: center;
+}
+
+.main__modal-failure.active {
+display: flex;
+}
+
+.modal-failure {
+position: relative;
+max-width: 500px;
+width: 90%;
+}
+
+.modal-failure__inner {
+position: relative;
+background: linear-gradient(135deg, #1a4d7a 0%, #003366 100%);
+border-radius: 20px;
+padding: 40px;
+text-align: center;
+box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+border: 3px solid #b1ff41;
+/* fail.png not provided */
+}
+
+.modal-failure__title {
+font-size: 28px;
+color: #fff;
+margin-bottom: 20px;
+text-transform: uppercase;
+}
+
+.modal-failure__text {
+font-size: 18px;
+color: #ccc;
+margin-bottom: 30px;
+}
+
+.modal-failure__button {
+display: inline-block;
+background: linear-gradient(135deg, #b1ff41 0%, #8fcc00 100%);
+color: #001a33;
+padding: 15px 40px;
+font-size: 18px;
+font-weight: bold;
+border-radius: 30px;
+text-decoration: none;
+text-transform: uppercase;
+letter-spacing: 1px;
+cursor: pointer;
+transition: all 0.3s ease;
+}
+
+.modal-failure__button:hover {
+transform: scale(1.05);
+box-shadow: 0 6px 20px rgba(177, 255, 65, 0.5);
+}
+
+.modal {
+position: relative;
+max-width: 500px;
+width: 90%;
+}
+
+.modal__inner {
+position: relative;
+background: linear-gradient(135deg, #1a4d7a 0%, #003366 100%);
+border-radius: 20px;
+padding: 40px;
+text-align: center;
+box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+border: 3px solid #b1ff41;
+}
+
+.modal__gift {
+position: absolute;
+width: 100px;
+height: auto;
+pointer-events: none;
+}
+
+.modal__gift--top {
+top: -50px;
+left: 50%;
+transform: translateX(-50%);
+}
+
+.modal__gift--bottom {
+bottom: -50px;
+left: 50%;
+transform: translateX(-50%);
+}
+
+.modal__title {
+font-size: 32px;
+color: #fff;
+margin-bottom: 20px;
+text-transform: uppercase;
+}
+
+.modal__text {
+font-size: 20px;
+color: #ccc;
+margin-bottom: 20px;
+}
+
+.ribbons--modal {
+margin: 20px 0;
+}
+
+.ribbons--modal span {
+font-size: 16px;
+padding: 6px 16px;
+}
+
+.claim-link {
+display: inline-block;
+background: linear-gradient(135deg, #b1ff41 0%, #8fcc00 100%);
+color: #001a33;
+padding: 15px 40px;
+font-size: 18px;
+font-weight: bold;
+border-radius: 30px;
+text-decoration: none;
+text-transform: uppercase;
+letter-spacing: 1px;
+margin-top: 20px;
+transition: all 0.3s ease;
+}
+
+.claim-link:hover {
+transform: scale(1.05);
+box-shadow: 0 6px 20px rgba(177, 255, 65, 0.5);
+}
+
+/* Footer */
+.compliance-footer {
+background-color: #000;
+padding: 12px;
+position: relative;
+z-index: 5;
+}
+
+.footer__text {
+font-size: 12px;
+line-height: 1.25;
+text-align: left;
+margin-bottom: 8px;
+color: #ffffff;
+}
+
+.footer__text.last {
+margin-bottom: 0;
+}
+
+.footer__text a {
+color: #ffffff;
+text-decoration: underline;
+}
+
+/* Responsive */
+@media screen and (max-width: 576px) {
+.header__logo-text {
+display: none;
+}
+
+.header__logo-img {
+display: block;
+max-width: 150px;
+}
+
+.ribbons {
+margin: 8px 0 0 0;
+}
+
+.ribbons span {
+font-size: 14px;
+padding: 8px 20px;
+min-width: 180px;
+}
+
+.wheel__attempts {
+font-size: 12px;
+margin-top: 5px;
+margin-bottom: 10px;
+}
+
+.wheel__attempts-value {
+font-size: 16px;
+}
+
+.wheel__layout {
+width: 400px;
+height: 400px;
+}
+
+.wheel__spinner-center {
+width: 120px;
+height: 120px;
+}
+
+.wheel__spinner-arrow {
+width: 70px;
+height: 70px;
+top: -25px;
+}
+
+.decor-items__item--god {
+left: -5%;
+bottom: 0%;
+width: 850px;
+max-width: 60%;
+z-index: 10;
+}
+
+.decor-items__item--girl {
+right: -5%;
+bottom: 0%;
+width: 400px;
+max-width: 60%;
+z-index: 10;
+}
+
+.modal {
+max-width: 90%;
+width: 90%;
+}
+
+.modal__inner {
+padding: 30px 20px;
+border-radius: 15px;
+}
+
+.modal__gift {
+width: 60px;
+height: auto;
+}
+
+.modal__gift--top {
+top: -30px;
+}
+
+.modal__gift--bottom {
+bottom: -30px;
+}
+
+.modal__title {
+font-size: 24px;
+margin-bottom: 15px;
+}
+
+.modal__text {
+font-size: 16px;
+margin-bottom: 15px;
+}
+
+.ribbons--modal {
+margin: 15px 0;
+}
+
+.ribbons--modal span {
+font-size: 14px;
+padding: 8px 12px;
+display: block;
+margin: 5px 0;
+}
+
+.claim-link {
+font-size: 16px;
+padding: 12px 30px;
+margin-top: 15px;
+}
+
+.modal-failure {
+max-width: 90%;
+width: 90%;
+}
+
+.modal-failure__inner {
+padding: 30px 20px;
+border-radius: 15px;
+}
+
+.modal-failure__title {
+font-size: 22px;
+margin-bottom: 15px;
+}
+
+.modal-failure__text {
+font-size: 16px;
+margin-bottom: 20px;
+}
+
+.modal-failure__button {
+font-size: 16px;
+padding: 12px 30px;
+}
+
+.footer__text {
+font-size: 10px;
+}
+}
+
+.hide {
+display: none !important;
+}
+</style>
+</head>
+<body>
+<div class="main">
+<header class="header">
+<a class="header__logo redirectlink" href="#" class="cta">
+<div class="header__logo-text">Casino.click</div>
+<img class="header__logo-img" src="images/casino_click_logo.png" alt="Casino.click" />
+</a>
+</header>
+
+<div class="decor-items">
+<div class="decor-items__container">
+<div class="falling-items">
+<div class="falling-items__set">
+<div class="falling-items__item falling-items__item--1">
+<img src="images/coin-1.png" alt="Money" />
+</div>
+<div class="falling-items__item falling-items__item--2">
+<img src="images/coin-2.png" alt="Money" />
+</div>
+<div class="falling-items__item falling-items__item--3">
+<img src="images/coin-3.png" alt="Money" />
+</div>
+<div class="falling-items__item falling-items__item--4">
+<img src="images/coin-4.png" alt="Money" />
+</div>
+<div class="falling-items__item falling-items__item--5">
+<img src="images/coin-5.png" alt="Money" />
+</div>
+<div class="falling-items__item falling-items__item--6">
+<img src="images/coin-5.png" alt="Money" />
+</div>
+<div class="falling-items__item falling-items__item--7">
+<img src="images/coin-1.png" alt="Money" />
+</div>
+<div class="falling-items__item falling-items__item--8">
+<img src="images/coin-1.png" alt="Money" />
+</div>
+<div class="falling-items__item falling-items__item--9">
+<img src="images/coin-3.png" alt="Money" />
+</div>
+</div>
+</div>
+<div class="decor-items__item decor-items__item--god">
+<img src="images/god.png" alt="God character" />
+</div>
+<div class="decor-items__item decor-items__item--girl">
+<img src="images/girl.png" alt="Girl character" />
+</div>
+<div class="decor-items__item decor-items__item--1">
+<img src="images/1.png" alt="Crystals" />
+</div>
+<div class="decor-items__item decor-items__item--2">
+<img src="images/2.png" alt="Crystals" />
+</div>
+<div class="decor-items__item decor-items__item--3">
+<img src="images/3.png" alt="Crystals" />
+</div>
+</div>
+</div>
+
+<div class="ribbons">
+<span>TRY YOUR LUCK</span>
+<span>SPIN NOW</span>
+</div>
+
+<div class="wheel__attempts">
+<span class="wheel__attempts-title">REMAINING ATTEMPTS: </span>
+<span class="wheel__attempts-value" id="counter_spin">2</span>
+</div>
+
+<div class="wheel main__new-wheel">
+<div class="wheel__layout stage-1">
+<div class="wheel__spinner">
+<div class="wheel__spinner-around"></div>
+<div class="wheel__spinner-img" id="wheel"></div>
+<div class="wheel__spinner-bling"></div>
+<div class="wheel__spinner-arrow"></div>
+<div class="wheel__spinner-center" id="spinButton"></div>
+</div>
+</div>
+</div>
+
+<div class="wheel__achievements">
+<div class="wheel__achievements-fs hide" id="achievements">
+<div class="lights-content lights-content_fs">
+<img class="lights-content__gift" src="images/gift.png" alt="Gift" />
+<span class="lights-content__value">
+<span class="lights-content__value--num">150</span>
+<span class="lights-content__value--subtitle">free spins</span>
+</span>
+</div>
+</div>
+</div>
+
+<!-- Failure Modal (First Spin) -->
+<div class="main__modal-failure" id="modalFailure">
+<div class="modal-failure">
+<div class="modal-failure__inner">
+<h2 class="modal-failure__title">Try Again!</h2>
+<p class="modal-failure__text">You have one more chance to win!</p>
+<button class="modal-failure__button" id="spinAgainButton">SPIN AGAIN</button>
+</div>
+</div>
+</div>
+
+<!-- Success Modal (Second Spin) -->
+<div class="main__modal" id="modal">
+<div class="modal">
+<div class="modal__inner">
+<img class="modal__gift modal__gift--bottom" src="images/gift-bottom.png" alt="Decor element - gift" />
+<div class="modal__wrapper">
+<img class="modal__gift modal__gift--top" src="images/gift-top.png" alt="Decor element - gift" />
+<h2 class="modal__title">Congratulations!</h2>
+<p class="modal__text">You've won:</p>
+<div class="ribbons ribbons--modal">
+<span>200,000 GC</span>
+<span>20 SC</span>
+</div>
+<a class="claim-link cta" href="#" id="claimButton">Claim bonus</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<script>
+// Wheel configuration - same as previous page
+const wheelSegments = [
+{ text: '75 FREE SPINS', value: 75, angle: 0 },
+{ text: '💣', value: 0, angle: 45 },
+{ text: '50 FREE SPINS', value: 50, angle: 90 },
+{ text: '💣', value: 0, angle: 135 },
+{ text: '25 FREE SPINS', value: 25, angle: 180 },
+{ text: '💣', value: 0, angle: 225 },
+{ text: '150 FREE SPINS', value: 150, angle: 270 },
+{ text: '💣', value: 0, angle: 315 }
+];
+
+let isSpinning = false;
+let currentRotation = 0;
+let spinCount = 0;
+let wheelOffset = 0;
+let remainingAttempts = 2;
+
+// Update attempts counter
+function updateAttempts() {
+document.getElementById('counter_spin').textContent = remainingAttempts;
+}
+
+// Spin the wheel
+function spinWheel() {
+if (isSpinning || remainingAttempts <= 0) return;
+
+isSpinning = true;
+spinCount++;
+remainingAttempts--;
+updateAttempts();
+
+const spinButton = document.getElementById('spinButton');
+spinButton.style.pointerEvents = 'none';
+spinButton.style.opacity = '0.7';
+
+const wheel = document.getElementById('wheel');
+const spinner = wheel.parentElement;
+
+let selectedSegment;
+let segmentIndex;
+
+if (spinCount === 1) {
+// First spin always fails - select "PLEASE TRY AGAIN" segment to the left of 150 FREE SPINS
+// Index 5 is at angle 225°, which is to the left of index 6 (150 FREE SPINS at 270°)
+segmentIndex = 5;
+selectedSegment = wheelSegments[segmentIndex];
+} else {
+// Second spin always wins 150 free spins
+segmentIndex = 6;
+selectedSegment = wheelSegments[segmentIndex];
+}
+
+// Calculate rotation
+const fullSpins = spinCount === 1 ? 6 : 12;
+const segmentAngle = wheelSegments[segmentIndex].angle;
+const baseRotation = (360 - segmentAngle) % 360;
+const targetAngle = baseRotation + (360 * fullSpins) + wheelOffset;
+const finalRotation = targetAngle;
+
+// Stop idle animation and reset
+wheel.style.animation = 'none';
+wheel.style.transform = 'rotate(0deg)';
+
+// Add animation class
+spinner.classList.add('wheel__spinner--animate');
+
+// Add win class for second spin to use longer animation
+if (spinCount === 2) {
+spinner.classList.add('wheel__spinner--win');
+}
+
+setTimeout(() => {
+wheel.style.transform = `rotate(${finalRotation}deg)`;
+currentRotation = finalRotation % 360;
+
+const animationDuration = spinCount === 2 ? 7000 : 6000;
+setTimeout(() => {
+spinner.classList.remove('wheel__spinner--animate');
+spinner.classList.remove('wheel__spinner--win');
+wheel.style.animation = '';
+
+if (spinCount === 1) {
+// First spin - show failure popup
+document.getElementById('modalFailure').classList.add('active');
+isSpinning = false;
+} else {
+// Second spin - show success modal
+document.getElementById('achievements').classList.remove('hide');
+document.getElementById('modal').classList.add('active');
+isSpinning = false;
+}
+}, animationDuration);
+}, 50);
+}
+
+// Event listeners
+document.getElementById('spinButton').addEventListener('click', spinWheel);
+
+// Spin again button (from failure modal)
+document.getElementById('spinAgainButton').addEventListener('click', () => {
+// Close failure modal
+document.getElementById('modalFailure').classList.remove('active');
+// Auto spin again
+spinWheel();
+});
+
+// Claim button
+document.getElementById('claimButton').addEventListener('click', (e) => {
+e.preventDefault();
+
+window.location.href = 'https://stake.com/?c=rPFh1hSP'; return;
+const currentUrl = new URL(window.location.href);
+const params = currentUrl.searchParams;
+
+let finalUrl = baseUrl;
+if (params.toString()) {
+const separator = baseUrl.includes('?') ? '&' : '?';
+finalUrl = baseUrl + separator + params.toString();
+}
+
+window.location.href = finalUrl;
+});
+
+// Initialize
+updateAttempts();
+</script>
+</body>
+</html>
